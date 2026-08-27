@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+enum StatusTodo {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDO
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Todo {
+  id String @id @default(uuid())
+  titulo String 
+  descricao String?
+  status StatusTodo @default(PENDENTE)
+  data_vencimento DateTime?
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  temaId String?
+  tema Tema? @relation(fields: [temaId], references: [id])
+}
+
+model Tema {
+  id String @id @default(uuid())
+  nome String
+  cor String? @default("#001178")
+  icone String? 
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  todos Todo[]
+}
