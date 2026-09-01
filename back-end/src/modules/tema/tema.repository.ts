@@ -1,13 +1,8 @@
-import { Todo } from "../../../generated/prisma/client.js";
-import { prisma } from "../../lib/prisma.js";
 
-interface Tema {
-    id: string,
-    nome: string,
-    icone?: string,
-    cor: string,
-    todos: Todo[]
-}
+import { prisma } from "../../lib/prisma.js";
+import Tema from "./tema.dto.js";
+
+
 
 export default class TemaRepository {
     static async pegarTema() {
