@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon"
+    "start": "tsx watch src/index.ts"
   },
   "keywords": [],
   "type": "module",
@@ -13,6 +13,7 @@
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "dotenv": "^17.4.2",
+    "fastify": "^5.12.1",
     "nodemon": "^3.1.14",
     "pg": "^8.23.0",
     "uuid": "^14.0.2"

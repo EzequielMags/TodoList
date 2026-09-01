@@ -1,18 +1,9 @@
-import { StatusTodo } from "../../../generated/prisma/enums.js";
 import { prisma } from "../../lib/prisma.js";
-
-interface Todo {
-    titulo: string,
-    descricao?: string,
-    temaId?: string,
-    status: StatusTodo,
-    dataVencimento?: Date,
-
-}
+import Todo from "./todo.dto.js";
 
 export default class TodoRepository {
-    static async pegarTodo() {
-        return await prisma.todo.findMany() 
+    static async pegarTodos() {
+        return await prisma.todo.findMany()
     }
 
     static async pegarTodoPorId(id: string) {
@@ -27,7 +18,7 @@ export default class TodoRepository {
         return await prisma.todo.create({
             data: {
                 titulo: todo.titulo,
-                descricao: todo.descricao,
+                descricao: todo.descricao || null,
                 status: todo.status,
                 temaId: todo.temaId,
                 data_vencimento: todo.dataVencimento
@@ -41,7 +32,7 @@ export default class TodoRepository {
                 id: id
             },
             data: todoAtualizado
-            
+
         })
     }
 

@@ -5,7 +5,7 @@ import Tema from "./tema.dto.js";
 
 
 export default class TemaRepository {
-    static async pegarTema() {
+    static async pegarTemas() {
         return await prisma.tema.findMany()
     }
 
