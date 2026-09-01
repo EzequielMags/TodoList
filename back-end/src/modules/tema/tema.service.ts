@@ -7,7 +7,17 @@ export default class TemaService {
     }
 
     static async pegarTemaPorId(id: string) {
-        return await TemaRepository.pegarTemaPorId(id)
+        try {
+            if (!id) throw new Error("Id do tema não fornecido")
+            const tema = await TemaRepository.pegarTemaPorId(id)
+
+            if (!tema) throw new Error("Tema não foi localizado. tente novamente")
+
+            return tema
+
+        } catch (error) {
+            throw error
+        }
     }
 
     static async criarTema(tema: Tema) {
